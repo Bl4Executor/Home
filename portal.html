@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo Babitonga & SFS | Seleção de Site</title>
+  <meta name="description" content="Selecione qual site deseja acessar: Babitonga Materiais de Construção ou SFS Serviços e Construções.">
+
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #070d19;
+      --primary: #d48c00;
+      --primary-glow: rgba(212, 140, 0, 0.15);
+      --blue: #0b3d82;
+      --blue-light: #1652a2;
+      --blue-glow: rgba(11, 61, 130, 0.25);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      font-family: var(--font-display);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    /* Selector container */
+    .portal-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* Portal header label */
+    .portal-header {
+      position: absolute;
+      top: 6vh;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 20;
+      pointer-events: none;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .portal-badge {
+      display: inline-flex;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      text-transform: uppercase;
+      background: rgba(7, 13, 25, 0.85);
+      border: 1px solid rgba(212, 140, 0, 0.25);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .portal-title {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Split side base */
+    .portal-side {
+      width: 50%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+      text-decoration: none;
+      color: inherit;
+      transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    /* Glow overlays for each side */
+    .side-glow {
+      position: absolute;
+      width: 45vw;
+      height: 45vw;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Left Side: SFS */
+    .portal-side.side-sfs {
+      background: linear-gradient(135deg, rgba(7, 13, 25, 0.96) 0%, rgba(11, 61, 130, 0.25) 100%);
+      border-right: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .portal-side.side-sfs .side-glow {
+      background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+      bottom: -15%;
+      left: -10%;
+    }
+
+    /* Right Side: Babitonga */
+    .portal-side.side-babi {
+      background: linear-gradient(135deg, rgba(7, 13, 25, 0.96) 0%, rgba(35, 22, 5, 0.25) 100%);
+    }
+
+    .portal-side.side-babi .side-glow {
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      top: -15%;
+      right: -10%;
+    }
+
+    /* Hover effect details */
+    .portal-container:hover .portal-side:not(:hover) {
+      width: 45%;
+      filter: brightness(0.4) saturate(0.7);
+    }
+
+    .portal-container .portal-side:hover {
+      width: 55%;
+      z-index: 10;
+    }
+
+    .portal-container .portal-side:hover .side-glow {
+      opacity: 0.25;
+    }
+
+    /* Portal Content Inner */
+    .side-content {
+      position: relative;
+      z-index: 5;
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portal-side:hover .side-content {
+      transform: translateY(-10px);
+    }
+
+    /* Logo Box */
+    .logo-container {
+      width: 120px;
+      height: 120px;
+      background: rgba(13, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.5s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+
+    .side-sfs:hover .logo-container {
+      border-color: var(--blue-light);
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 20px 48px rgba(11, 61, 130, 0.3);
+    }
+
+    .side-babi:hover .logo-container {
+      border-color: var(--primary);
+      transform: scale(1.08) rotate(4deg);
+      box-shadow: 0 20px 48px rgba(212, 140, 0, 0.3);
+    }
+
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .side-sfs .logo-img {
+      border-radius: 12px; /* Rectangular JPG logo looks great slightly rounded */
+      width: 88px;
+      height: 88px;
+    }
+
+    /* Brand typography */
+    .brand-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .side-sfs .brand-eyebrow {
+      color: var(--text-muted);
+    }
+
+    .side-babi .brand-eyebrow {
+      color: var(--primary);
+    }
+
+    .brand-name {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .brand-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 36px;
+      transition: color 0.4s;
+      padding: 0 16px;
+    }
+
+    .portal-side:hover .brand-desc {
+      color: #f3f4f6;
+    }
+
+    /* Button CTA */
+    .portal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+      backdrop-filter: blur(8px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portal-btn i {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Hover buttons */
+    .side-sfs:hover .portal-btn {
+      background: var(--blue-light);
+      border-color: transparent;
+      box-shadow: 0 12px 28px rgba(11, 61, 130, 0.4);
+      transform: scale(1.05);
+    }
+
+    .side-babi:hover .portal-btn {
+      background: var(--primary);
+      border-color: transparent;
+      box-shadow: 0 12px 28px rgba(212, 140, 0, 0.4);
+      transform: scale(1.05);
+    }
+
+    .portal-side:hover .portal-btn i {
+      transform: translateX(4px);
+    }
+
+    /* Center line decoration */
+    .center-divider {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 15%, rgba(255, 255, 255, 0.08) 50%, transparent 85%);
+      z-index: 12;
+      pointer-events: none;
+      transform: translateX(-50%);
+      transition: background 0.5s ease;
+    }
+
+    .portal-side.side-sfs:hover ~ .center-divider {
+      background: linear-gradient(to bottom, transparent 15%, rgba(11, 97, 213, 0.25) 50%, transparent 85%);
+    }
+
+    .portal-side.side-babi:hover ~ .center-divider {
+      background: linear-gradient(to bottom, transparent 15%, rgba(212, 140, 0, 0.25) 50%, transparent 85%);
+    }
+
+    /* Footer text */
+    .portal-footer {
+      position: absolute;
+      bottom: 4vh;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      font-family: var(--font-mono);
+      letter-spacing: 0.15em;
+      pointer-events: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* MOBILE LAYOUT */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .portal-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100dvh;
+      }
+
+      .portal-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        padding: 50px 24px 30px;
+        background: var(--bg-dark);
+        margin: 0 auto;
+      }
+
+      .portal-badge {
+        margin-bottom: 8px;
+      }
+
+      .portal-side {
+        width: 100% !important;
+        height: 45dvh;
+        min-height: 340px;
+        padding: 40px 24px;
+        justify-content: center;
+        border-right: none;
+      }
+
+      .portal-side.side-sfs {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      }
+
+      .portal-container:hover .portal-side:not(:hover) {
+        width: 100%;
+        filter: none;
+      }
+
+      .portal-container .portal-side:hover {
+        width: 100%;
+      }
+
+      .portal-side:hover .side-content {
+        transform: none;
+      }
+
+      .logo-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 16px;
+      }
+
+      .logo-img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .side-sfs .logo-img {
+        width: 78px;
+        height: 78px;
+      }
+
+      .brand-name {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .brand-desc {
+        font-size: 14px;
+        margin-bottom: 24px;
+        padding: 0;
+      }
+
+      .portal-btn {
+        padding: 14px 28px;
+      }
+
+      .center-divider {
+        display: none;
+      }
+
+      .portal-footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        padding: 30px 24px;
+        background: var(--bg-dark);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PORTAL HEADER -->
+  <div class="portal-header">
+    <div class="portal-badge">Grupo Babitonga</div>
+    <h1 class="portal-title">Selecione para onde deseja ir</h1>
+  </div>
+
+  <div class="portal-container">
+    <!-- ESQUERDA: SFS -->
+    <a href="sfs.html" class="portal-side side-sfs" aria-label="Acessar o site SFS Serviços e Construções">
+      <div class="side-glow"></div>
+      <div class="side-content">
+        <div class="logo-container">
+          <img src="Logo da Sfss.jpeg" alt="Logo SFS" class="logo-img">
+        </div>
+        <span class="brand-eyebrow">Construções e Reformas</span>
+        <h2 class="brand-name">SFS Serviços</h2>
+        <p class="brand-desc">
+          Planejamento técnico, acompanhamento de engenharia e execução de obras civis sob medida.
+        </p>
+        <span class="portal-btn">
+          <span>Entrar no site</span>
+          <i data-lucide="arrow-right"></i>
+        </span>
+      </div>
+    </a>
+
+    <!-- DIREITA: BABITONGA -->
+    <a href="index.html" class="portal-side side-babi" aria-label="Acessar o site Babitonga Materiais de Construção">
+      <div class="side-glow"></div>
+      <div class="side-content">
+        <div class="logo-container">
+          <img src="Logo Babitonga Transparent.png" alt="Logo Babitonga" class="logo-img">
+        </div>
+        <span class="brand-eyebrow">Loja de Materiais</span>
+        <h2 class="brand-name">Babitonga</h2>
+        <p class="brand-desc">
+          A maior variedade de materiais de construção na região, do alicerce ao acabamento.
+        </p>
+        <span class="portal-btn">
+          <span>Entrar no site</span>
+          <i data-lucide="arrow-right"></i>
+        </span>
+      </div>
+    </a>
+
+    <!-- DECORATIVE CENTER DIVIDER -->
+    <div class="center-divider"></div>
+  </div>
+
+  <!-- PORTAL FOOTER -->
+  <div class="portal-footer">
+    <span>&copy; 2026 GRUPO BABITONGA. TODOS OS DIREITOS RESERVADOS.</span>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+
+</body>
+
+</html>
