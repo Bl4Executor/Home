@@ -357,12 +357,18 @@
         overflow-x: hidden;
         height: auto;
         min-height: 100dvh;
+        background:
+          radial-gradient(circle at top, rgba(11, 61, 130, 0.22), transparent 38%),
+          radial-gradient(circle at bottom, rgba(212, 140, 0, 0.16), transparent 34%),
+          var(--bg-dark);
       }
 
       .portal-container {
         flex-direction: column;
         height: auto;
-        min-height: calc(100dvh - 120px);
+        min-height: calc(100dvh - 92px);
+        padding: 0 14px 18px;
+        gap: 14px;
       }
 
       .portal-header {
@@ -371,8 +377,10 @@
         left: 0;
         transform: none;
         width: 100%;
-        padding: 32px 24px 20px;
-        background: var(--bg-dark);
+        padding: 22px 18px 14px;
+        background: rgba(7, 13, 25, 0.72);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         margin: 0 auto;
       }
 
@@ -383,16 +391,20 @@
       }
 
       .portal-title {
-        font-size: 22px;
+        font-size: 24px;
+        max-width: 14ch;
+        margin: 0 auto;
       }
 
       .portal-side {
         width: 100% !important;
         height: auto;
-        min-height: unset;
-        padding: 32px 24px;
-        justify-content: center;
+        min-height: 330px;
+        padding: 26px 20px 24px;
+        justify-content: flex-start;
         border-right: none;
+        border-radius: 28px;
+        box-shadow: 0 18px 38px rgba(0, 0, 0, 0.26);
       }
 
       .portal-side.side-sfs {
@@ -412,21 +424,27 @@
         transform: none;
       }
 
+      .side-content {
+        max-width: 100%;
+        align-items: flex-start;
+        text-align: left;
+      }
+
       .logo-container {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 16px;
+        width: 72px;
+        height: 72px;
+        margin-bottom: 14px;
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
       }
 
       .logo-img {
-        width: 64px;
-        height: 64px;
+        width: 58px;
+        height: 58px;
       }
 
       .side-sfs .logo-img {
-        width: 58px;
-        height: 58px;
+        width: 52px;
+        height: 52px;
         border-radius: 8px;
       }
 
@@ -436,22 +454,24 @@
       }
 
       .brand-name {
-        font-size: 24px;
-        margin-bottom: 8px;
+        font-size: 25px;
+        margin-bottom: 10px;
+        max-width: 10ch;
       }
 
       .brand-desc {
-        font-size: 13.5px;
-        margin-bottom: 20px;
+        font-size: 13px;
+        margin-bottom: 18px;
         padding: 0;
         line-height: 1.5;
-        max-width: 320px;
-        margin-inline: auto;
+        max-width: 100%;
       }
 
       .portal-btn {
-        padding: 12px 28px;
+        padding: 13px 24px;
         font-size: 11px;
+        border-radius: 12px;
+        margin-top: auto;
       }
 
       .center-divider {
@@ -463,8 +483,8 @@
         bottom: 0;
         left: 0;
         transform: none;
-        padding: 24px 24px 32px;
-        background: var(--bg-dark);
+        padding: 18px 18px 28px;
+        background: transparent;
       }
     }
   </style>
