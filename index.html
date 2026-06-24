@@ -355,12 +355,14 @@
       html, body {
         overflow-y: auto;
         overflow-x: hidden;
+        height: auto;
+        min-height: 100dvh;
       }
 
       .portal-container {
         flex-direction: column;
         height: auto;
-        min-height: 100dvh;
+        min-height: calc(100dvh - 120px);
       }
 
       .portal-header {
@@ -369,26 +371,32 @@
         left: 0;
         transform: none;
         width: 100%;
-        padding: 50px 24px 30px;
+        padding: 32px 24px 20px;
         background: var(--bg-dark);
         margin: 0 auto;
       }
 
       .portal-badge {
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        font-size: 10px;
+        padding: 4px 12px;
+      }
+
+      .portal-title {
+        font-size: 22px;
       }
 
       .portal-side {
         width: 100% !important;
-        height: 45dvh;
-        min-height: 340px;
-        padding: 40px 24px;
+        height: auto;
+        min-height: unset;
+        padding: 32px 24px;
         justify-content: center;
         border-right: none;
       }
 
       .portal-side.side-sfs {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       }
 
       .portal-container:hover .portal-side:not(:hover) {
@@ -405,34 +413,45 @@
       }
 
       .logo-container {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         margin-bottom: 16px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
       }
 
       .logo-img {
-        width: 80px;
-        height: 80px;
+        width: 64px;
+        height: 64px;
       }
 
       .side-sfs .logo-img {
-        width: 78px;
-        height: 78px;
+        width: 58px;
+        height: 58px;
+        border-radius: 8px;
+      }
+
+      .brand-eyebrow {
+        font-size: 10px;
+        margin-bottom: 6px;
       }
 
       .brand-name {
-        font-size: 28px;
+        font-size: 24px;
         margin-bottom: 8px;
       }
 
       .brand-desc {
-        font-size: 14px;
-        margin-bottom: 24px;
+        font-size: 13.5px;
+        margin-bottom: 20px;
         padding: 0;
+        line-height: 1.5;
+        max-width: 320px;
+        margin-inline: auto;
       }
 
       .portal-btn {
-        padding: 14px 28px;
+        padding: 12px 28px;
+        font-size: 11px;
       }
 
       .center-divider {
@@ -444,7 +463,7 @@
         bottom: 0;
         left: 0;
         transform: none;
-        padding: 30px 24px;
+        padding: 24px 24px 32px;
         background: var(--bg-dark);
       }
     }
